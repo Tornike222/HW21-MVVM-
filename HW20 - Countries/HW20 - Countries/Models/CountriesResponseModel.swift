@@ -36,5 +36,7 @@ struct Country: Codable {
 
 //MARK: - Object
 var countriesArray = [Country]()
+var filteredCountries = [Country]()
+
 
 

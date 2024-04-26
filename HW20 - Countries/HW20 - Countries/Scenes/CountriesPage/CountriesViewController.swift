@@ -10,6 +10,7 @@ import Speech
 
 class CountriesViewController: UIViewController {
     //MARK: - Loading state
+    var isLoading = true
     var filteredCountries: [Country] = []
     let searchController = UISearchController(searchResultsController: nil)
     var countriesViewModel = CountriesViewModel()
@@ -52,14 +53,14 @@ class CountriesViewController: UIViewController {
     
     func setupUI(){
         addBackgroundColor()
-        
+
         addCountriesTableView()
     }
     
     func addBackgroundColor(){
         view.backgroundColor = UIColor.dynamicColor(light: .white, dark: #colorLiteral(red: 0.2392157018, green: 0.2392157018, blue: 0.2392157018, alpha: 1))
     }
-    
+
     func addCountriesTableView(){
         view.addSubview(countriesTableView)
         
@@ -75,7 +76,7 @@ class CountriesViewController: UIViewController {
         countriesTableView.register(CountriesCell.self, forCellReuseIdentifier: "CountriesCell")
         
     }
-    
+
 }
 
 extension CountriesViewController: CountriesViewModelDelegate {
@@ -95,24 +96,27 @@ extension CountriesViewController: CountriesViewModelDelegate {
     
     func countriesFetched() {
         countriesTableView.reloadData()
+        isLoading = false
     }
     
     func updateFilteredCountries() {
-        countriesTableView.reloadData()
-    }
+            countriesTableView.reloadData()
+        }
 }
 
 //MARK: - DataSource Extension and functions
 extension CountriesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return countriesArray.count
+        return  countriesViewModel.countryNumber()
+
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CountriesCell", for: indexPath) as? CountriesCell
-        let country = countriesArray[indexPath.row]
+        let country: Country
         
+        country = countriesViewModel.country(on: indexPath)
         
         if let photoUrl = URL(string: country.flags.png ?? "") {
             cell?.flag.loadImageWith(url: photoUrl)
@@ -125,8 +129,9 @@ extension CountriesViewController: UITableViewDataSource {
         }
         
         getBorderedLayer(cell: cell!)
-        
+
         cell?.accessoryType = .disclosureIndicator
+        
         cell?.backgroundColor = UIColor.dynamicColor(light: .white, dark:  #colorLiteral(red: 0.2941174507, green: 0.2941178083, blue: 0.3027183115, alpha: 1))
         
         return cell ?? CountriesCell()
@@ -144,7 +149,11 @@ extension CountriesViewController: UITableViewDataSource {
 //MARK: - Delegate Extension and functions
 extension CountriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        60
+        if isLoading == false {
+            60
+        } else {
+            0
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -170,14 +179,6 @@ extension CountriesViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
         countriesViewModel.filterContentForSearchText(searchText)
-        
     }
-    
-    func isFiltering() -> Bool {
-        return searchController.isActive && !isSearchBarEmpty() && !filteredCountries.isEmpty
-    }
-    
-    func isSearchBarEmpty() -> Bool {
-        return searchController.searchBar.text?.isEmpty ?? true
-    }
+
 }

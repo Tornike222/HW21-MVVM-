@@ -10,12 +10,15 @@ import UIKit
 protocol CountriesViewModelDelegate: AnyObject{
     func countriesFetched()
     func navigationToDetailsCV(country: Country)
+    func updateFilteredCountries()
 }
 
 class CountriesViewModel {
     var filteredCountries: [Country] = []
+    var isFilterActive = false
     weak var delegate: CountriesViewModelDelegate?
     
+
     func didViewModelSet() {
         fetchData()
     }
@@ -24,6 +27,13 @@ class CountriesViewModel {
         delegate?.navigationToDetailsCV(country: countriesArray[indexPath.row])
     }
     
+    func countryNumber() -> Int {
+        return isFilterActive ? filteredCountries.count : countriesArray.count
+    }
+    
+    func country(on index: IndexPath) -> Country {
+        return isFilterActive ? filteredCountries[index.row] : countriesArray[index.row]
+    }
     
     func filterContentForSearchText(_ searchText: String) {
         if searchText.isEmpty {
@@ -31,10 +41,11 @@ class CountriesViewModel {
         } else {
             filteredCountries = countriesArray.filter { (country: Country) -> Bool in
                 guard let countryName = country.name.common else { return false }
-                return countryName.lowercased().contains(searchText.lowercased())
+                return countryName.lowercased().hasPrefix(searchText.lowercased())
             }
         }
-        delegate?.countriesFetched()
+        delegate?.updateFilteredCountries()
+        isFilterActive = true
     }
     
     
@@ -46,4 +57,5 @@ class CountriesViewModel {
         }
     }
 }
+
 
