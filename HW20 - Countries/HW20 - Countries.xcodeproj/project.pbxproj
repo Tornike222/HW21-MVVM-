@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B20CD80A2BDB6FA7001C33AD /* UiColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20CD8092BDB6FA7001C33AD /* UiColorExtension.swift */; };
+		B20CD80E2BDB703F001C33AD /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20CD80D2BDB703F001C33AD /* UIImageViewExtension.swift */; };
 		B26A6A0E2BD50E9B0026E16A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A6A0D2BD50E9B0026E16A /* AppDelegate.swift */; };
 		B26A6A102BD50E9B0026E16A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A6A0F2BD50E9B0026E16A /* SceneDelegate.swift */; };
 		B26A6A122BD50E9B0026E16A /* CountriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A6A112BD50E9B0026E16A /* CountriesViewController.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B20CD8092BDB6FA7001C33AD /* UiColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiColorExtension.swift; sourceTree = "<group>"; };
+		B20CD80D2BDB703F001C33AD /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		B26A6A0A2BD50E9B0026E16A /* HW20 - Countries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HW20 - Countries.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26A6A0D2BD50E9B0026E16A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B26A6A0F2BD50E9B0026E16A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +55,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B20CD80B2BDB6FC9001C33AD /* UIExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				B20CD8092BDB6FA7001C33AD /* UiColorExtension.swift */,
+				B20CD80D2BDB703F001C33AD /* UIImageViewExtension.swift */,
+			);
+			path = UIExtensions;
+			sourceTree = "<group>";
+		};
 		B26A6A012BD50E9B0026E16A = {
 			isa = PBXGroup;
 			children = (
@@ -70,6 +83,7 @@
 		B26A6A0C2BD50E9B0026E16A /* HW20 - Countries */ = {
 			isa = PBXGroup;
 			children = (
+				B20CD80B2BDB6FC9001C33AD /* UIExtensions */,
 				B26A6A302BD58D2C0026E16A /* NetworkServices */,
 				B26A6A2A2BD5118F0026E16A /* Models */,
 				B26A6A252BD50FF30026E16A /* Fonts */,
@@ -228,9 +242,11 @@
 				B26A6A2C2BD587430026E16A /* NetworkService.swift in Sources */,
 				B26A6A322BD5B5AE0026E16A /* CountryDetailsView.swift in Sources */,
 				B26A6A122BD50E9B0026E16A /* CountriesViewController.swift in Sources */,
+				B20CD80E2BDB703F001C33AD /* UIImageViewExtension.swift in Sources */,
 				B26A6A0E2BD50E9B0026E16A /* AppDelegate.swift in Sources */,
 				B26A6A2E2BD58C580026E16A /* CountriesCell.swift in Sources */,
 				B2F50B8B2BDA89690013C34E /* CountriesViewModel.swift in Sources */,
+				B20CD80A2BDB6FA7001C33AD /* UiColorExtension.swift in Sources */,
 				B26A6A102BD50E9B0026E16A /* SceneDelegate.swift in Sources */,
 				B26A6A292BD511800026E16A /* CountriesResponseModel.swift in Sources */,
 			);

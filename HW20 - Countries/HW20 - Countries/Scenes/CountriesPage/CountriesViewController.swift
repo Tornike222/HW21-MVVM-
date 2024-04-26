@@ -25,8 +25,6 @@ class CountriesViewController: UIViewController {
         return countriesTableView
     }()
     
-    
-    
     //MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,14 +51,14 @@ class CountriesViewController: UIViewController {
     
     func setupUI(){
         addBackgroundColor()
-
+        
         addCountriesTableView()
     }
     
     func addBackgroundColor(){
         view.backgroundColor = UIColor.dynamicColor(light: .white, dark: #colorLiteral(red: 0.2392157018, green: 0.2392157018, blue: 0.2392157018, alpha: 1))
     }
-
+    
     func addCountriesTableView(){
         view.addSubview(countriesTableView)
         
@@ -76,7 +74,7 @@ class CountriesViewController: UIViewController {
         countriesTableView.register(CountriesCell.self, forCellReuseIdentifier: "CountriesCell")
         
     }
-
+    
 }
 
 extension CountriesViewController: CountriesViewModelDelegate {
@@ -100,15 +98,15 @@ extension CountriesViewController: CountriesViewModelDelegate {
     }
     
     func updateFilteredCountries() {
-            countriesTableView.reloadData()
-        }
+        countriesTableView.reloadData()
+    }
 }
 
 //MARK: - DataSource Extension and functions
 extension CountriesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  countriesViewModel.countryNumber()
-
+        
     }
     
     
@@ -129,7 +127,7 @@ extension CountriesViewController: UITableViewDataSource {
         }
         
         getBorderedLayer(cell: cell!)
-
+        
         cell?.accessoryType = .disclosureIndicator
         
         cell?.backgroundColor = UIColor.dynamicColor(light: .white, dark:  #colorLiteral(red: 0.2941174507, green: 0.2941178083, blue: 0.3027183115, alpha: 1))
@@ -149,11 +147,7 @@ extension CountriesViewController: UITableViewDataSource {
 //MARK: - Delegate Extension and functions
 extension CountriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if isLoading == false {
-            60
-        } else {
-            0
-        }
+        !isLoading ? 60 : 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -161,24 +155,9 @@ extension CountriesViewController: UITableViewDelegate {
     }
 }
 
-extension UIColor {
-    static func dynamicColor(light: UIColor, dark: UIColor) -> UIColor {
-        return UIColor { traits in
-            switch traits.userInterfaceStyle {
-            case .dark:
-                return dark
-            default:
-                return light
-            }
-        }
-    }
-}
-
-
 extension CountriesViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
         countriesViewModel.filterContentForSearchText(searchText)
     }
-
 }

@@ -9,12 +9,14 @@ import UIKit
 import SafariServices
 
 class CountryDetailsViewModel {
+    //MARK: - Properties
     private var country: Country?
-
+    
     init(country: Country?) {
         self.country = country
     }
-
+    
+    //MARK: - Set Labels and flag
     func updateViewDetails(countryDetailsView: CountryDetailsView , presentingViewController: UIViewController) {
         guard let country = country else { return }
         
@@ -61,6 +63,8 @@ class CountryDetailsViewModel {
             countryDetailsView.regionValueLabel.text = "Unknown"
         }
         
+        
+        //sets neighbors
         if let neighbors = country.borders {
             let lastIndexOfNeighborsArray = neighbors.count - 1
             if lastIndexOfNeighborsArray > 4 {

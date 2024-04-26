@@ -8,14 +8,17 @@
 import UIKit
 import SafariServices
 
+//MARK: - Protocols
 protocol CountryDetailsViewDelegate: AnyObject {
     func didFetchData()
 }
 
 class CountryDetailsView: UIView {
+    //MARK: - delegates
     weak var delegate: CountryDetailsViewDelegate?
     private var viewModel: CountryDetailsViewModel?
 
+    //MARK: - UI Components
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -217,6 +220,7 @@ class CountryDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - SetupUI Functions
     func setupUI() {
         addScrollView()
         addCountryImage()
@@ -426,7 +430,6 @@ class CountryDetailsView: UIView {
     
 }
 
-
 class CountryDetailsViewController: UIViewController, CountryDetailsViewDelegate {
 
     
@@ -434,8 +437,6 @@ class CountryDetailsViewController: UIViewController, CountryDetailsViewDelegate
     var country: Country?
     let countryDetailsView = CountryDetailsView()
 
-    
-    
     //MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -465,10 +466,8 @@ class CountryDetailsViewController: UIViewController, CountryDetailsViewDelegate
             supportDarkMode()
         }
     }
-
     
     //MARK: - Functions
-    
     func supportDarkMode(){
         let isDarkMode = traitCollection.userInterfaceStyle == .dark
         
@@ -477,11 +476,8 @@ class CountryDetailsViewController: UIViewController, CountryDetailsViewDelegate
         
         view.backgroundColor = UIColor.dynamicColor(light: .white, dark: #colorLiteral(red: 0.2392157018, green: 0.2392157018, blue: 0.2392157018, alpha: 1))
     }
-    
-    
 
     //MARK: - Fetch Data from urls
-    
     func didFetchData(){ //გამტარის როლს თამაშობს
         let viewModel = CountryDetailsViewModel(country: country)
         viewModel.updateViewDetails(countryDetailsView: countryDetailsView, presentingViewController: self)

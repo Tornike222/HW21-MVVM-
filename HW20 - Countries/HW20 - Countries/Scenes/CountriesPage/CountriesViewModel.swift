@@ -7,6 +7,7 @@
 
 import UIKit
 
+//MARK: - Protocols
 protocol CountriesViewModelDelegate: AnyObject{
     func countriesFetched()
     func navigationToDetailsCV(country: Country)
@@ -14,11 +15,12 @@ protocol CountriesViewModelDelegate: AnyObject{
 }
 
 class CountriesViewModel {
+    //MARK: - Properties & delegate
     var filteredCountries: [Country] = []
     var isFilterActive = false
     weak var delegate: CountriesViewModelDelegate?
     
-
+    //MARK: - Functions
     func didViewModelSet() {
         fetchData()
     }
@@ -47,7 +49,6 @@ class CountriesViewModel {
         delegate?.updateFilteredCountries()
         isFilterActive = true
     }
-    
     
     private func fetchData() {
         let urlString = "https://restcountries.com/v3.1/all"
