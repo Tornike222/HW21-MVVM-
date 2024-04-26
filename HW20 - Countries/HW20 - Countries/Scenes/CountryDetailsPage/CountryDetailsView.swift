@@ -14,6 +14,7 @@ protocol CountryDetailsViewDelegate: AnyObject {
 
 class CountryDetailsView: UIView {
     weak var delegate: CountryDetailsViewDelegate?
+    private var viewModel: CountryDetailsViewModel?
 
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -414,9 +415,15 @@ class CountryDetailsView: UIView {
             googleMapButton.widthAnchor.constraint(equalToConstant: 50)
         ])
     }
+    
     func fetchData() {
         delegate?.didFetchData()
     }
+    
+    private func setupViewModel() {
+        viewModel = CountryDetailsViewModel(country: nil)
+    }
+    
 }
 
 
@@ -474,97 +481,9 @@ class CountryDetailsViewController: UIViewController, CountryDetailsViewDelegate
     
 
     //MARK: - Fetch Data from urls
-    func didFetchData(){
-        guard let country = country else { return }
-        
-        var neighborsList = ""
-        
-        if let flagUrlString = country.flags.png,
-           let flagUrl = URL(string: flagUrlString) {
-            self.countryDetailsView.countryImage.loadImageWith(url: flagUrl)
-        }
-        
-        self.countryDetailsView.aboutFlagBodyLabel.text = country.flags.alt ?? "We don't have any information about this flag to show"
-        
-        if let population = country.population {
-            self.countryDetailsView.populationValueLabel.text = "\(Int(population))"
-        } else {
-            self.countryDetailsView.populationValueLabel.text = "Unknown"
-            return
-        }
-        
-        if let spelling = country.altSpellings?.last {
-            self.countryDetailsView.spellingValueLabel.text = spelling
-        } else {
-            self.countryDetailsView.spellingValueLabel.text = "Unknown"
-        }
-        
-        if let capital = country.capital?.last {
-            self.countryDetailsView.capitalValueLabel.text = capital
-        } else {
-            self.countryDetailsView.capitalValueLabel.text = "Unknown"
-        }
-        
-        if let area = country.area {
-            self.countryDetailsView.areaValueLabel.text = String(Int(area))
-        } else {
-            self.countryDetailsView.areaValueLabel.text = "Unknown"
-        }
-        
-        if let region = country.region {
-            if country.name.common?.lowercased() == "Georgia".lowercased() {
-                self.countryDetailsView.regionValueLabel.text = "Europe" //ვერვპატიობ ამ APIს აზიაში რო გაგვიყვანა და მაგისგამოძახილია ეს :დ
-            } else {
-                self.countryDetailsView.regionValueLabel.text = region
-            }
-        } else {
-            self.countryDetailsView.regionValueLabel.text = "Unknown"
-            
-        }
-        
-        if let neighbors = country.borders {
-            let lastIndexOfNeighborsArray = neighbors.count - 1
-            if lastIndexOfNeighborsArray > 4 {
-                for i in 0..<5 {
-                    if let neighbor = neighbors[i] {
-                        neighborsList += neighbor + " "
-                    }
-                }
-            } else {
-                for i in 0...lastIndexOfNeighborsArray {
-                    if let neighbor = neighbors[i] {
-                        neighborsList += neighbor + " "
-                    }
-                }
-            }
-            self.countryDetailsView.neighborValueLabel.text = neighborsList
-        } else {
-            self.countryDetailsView.neighborValueLabel.text = "Unknown"
-        }
-        
-        if let streetMapUrlString = country.maps.openStreetMaps,
-           let googleMapUrlString = country.maps.googleMaps{
-            self.countryDetailsView.streetMapButton.addAction(UIAction(handler: { _ in
-                openSafariForstreetMap()
-            }), for: .touchUpInside)
-            
-            self.countryDetailsView.googleMapButton.addAction(UIAction(handler: { _ in
-                openSafariForGoogleMap()
-            }), for: .touchUpInside)
-            
-            func openSafariForstreetMap(){
-                if let url = URL(string: streetMapUrlString) {
-                    let safariViewController = SFSafariViewController(url: url)
-                    self.present(safariViewController, animated: true)
-                }
-            }
-            
-            func openSafariForGoogleMap(){
-                if let url = URL(string: googleMapUrlString) {
-                    let safariViewController = SFSafariViewController(url: url)
-                    self.present(safariViewController, animated: true)
-                }
-            }
-        }
+    
+    func didFetchData(){ //გამტარის როლს თამაშობს
+        let viewModel = CountryDetailsViewModel(country: country)
+        viewModel.updateViewDetails(countryDetailsView: countryDetailsView, presentingViewController: self)
     }
 }
