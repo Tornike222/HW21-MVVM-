@@ -17,9 +17,9 @@
 		B26A6A292BD511800026E16A /* CountriesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A6A282BD511800026E16A /* CountriesResponseModel.swift */; };
 		B26A6A2C2BD587430026E16A /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A6A2B2BD587430026E16A /* NetworkService.swift */; };
 		B26A6A2E2BD58C580026E16A /* CountriesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A6A2D2BD58C580026E16A /* CountriesCell.swift */; };
-		B26A6A322BD5B5AE0026E16A /* CountryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A6A312BD5B5AE0026E16A /* CountryDetailsViewController.swift */; };
+		B26A6A322BD5B5AE0026E16A /* CountryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26A6A312BD5B5AE0026E16A /* CountryDetailsView.swift */; };
 		B2F50B8B2BDA89690013C34E /* CountriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F50B8A2BDA89690013C34E /* CountriesViewModel.swift */; };
-		B2F50B8F2BDB57860013C34E /* CountryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F50B8E2BDB57860013C34E /* CountryDetailsView.swift */; };
+		B2F50B8F2BDB57860013C34E /* CountryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2F50B8E2BDB57860013C34E /* CountryDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,9 +35,9 @@
 		B26A6A282BD511800026E16A /* CountriesResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesResponseModel.swift; sourceTree = "<group>"; };
 		B26A6A2B2BD587430026E16A /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		B26A6A2D2BD58C580026E16A /* CountriesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesCell.swift; sourceTree = "<group>"; };
-		B26A6A312BD5B5AE0026E16A /* CountryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewController.swift; sourceTree = "<group>"; };
+		B26A6A312BD5B5AE0026E16A /* CountryDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsView.swift; sourceTree = "<group>"; };
 		B2F50B8A2BDA89690013C34E /* CountriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesViewModel.swift; sourceTree = "<group>"; };
-		B2F50B8E2BDB57860013C34E /* CountryDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsView.swift; sourceTree = "<group>"; };
+		B2F50B8E2BDB57860013C34E /* CountryDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,8 +137,8 @@
 		B2F50B8C2BDAF5AC0013C34E /* CountryDetailsPage */ = {
 			isa = PBXGroup;
 			children = (
-				B26A6A312BD5B5AE0026E16A /* CountryDetailsViewController.swift */,
-				B2F50B8E2BDB57860013C34E /* CountryDetailsView.swift */,
+				B26A6A312BD5B5AE0026E16A /* CountryDetailsView.swift */,
+				B2F50B8E2BDB57860013C34E /* CountryDetailsViewModel.swift */,
 			);
 			path = CountryDetailsPage;
 			sourceTree = "<group>";
@@ -224,9 +224,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2F50B8F2BDB57860013C34E /* CountryDetailsView.swift in Sources */,
+				B2F50B8F2BDB57860013C34E /* CountryDetailsViewModel.swift in Sources */,
 				B26A6A2C2BD587430026E16A /* NetworkService.swift in Sources */,
-				B26A6A322BD5B5AE0026E16A /* CountryDetailsViewController.swift in Sources */,
+				B26A6A322BD5B5AE0026E16A /* CountryDetailsView.swift in Sources */,
 				B26A6A122BD50E9B0026E16A /* CountriesViewController.swift in Sources */,
 				B26A6A0E2BD50E9B0026E16A /* AppDelegate.swift in Sources */,
 				B26A6A2E2BD58C580026E16A /* CountriesCell.swift in Sources */,
