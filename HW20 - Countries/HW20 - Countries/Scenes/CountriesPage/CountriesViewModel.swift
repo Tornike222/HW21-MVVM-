@@ -57,6 +57,7 @@ class CountriesViewModel {
             self.delegate?.countriesFetched()
         }
     }
+    
 }
 
 

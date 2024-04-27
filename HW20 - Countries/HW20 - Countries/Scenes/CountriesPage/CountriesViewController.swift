@@ -46,6 +46,7 @@ class CountriesViewController: UIViewController {
         searchController.searchBar.showsBookmarkButton = true
         searchController.searchBar.setImage(UIImage(systemName: "mic.fill"), for: .bookmark, state: .normal)
         navigationItem.searchController = searchController
+
         definesPresentationContext = true
     }
     
@@ -106,7 +107,7 @@ extension CountriesViewController: CountriesViewModelDelegate {
 extension CountriesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  countriesViewModel.countryNumber()
-        
+
     }
     
     
@@ -140,6 +141,11 @@ extension CountriesViewController: UITableViewDataSource {
         cell.layer.borderWidth = 1
         cell.clipsToBounds = true
         cell.layer.borderColor = UIColor.lightGray.cgColor
+    }
+    func loginDidSuccess() {
+        let alertController = UIAlertController(title: "გილოცავ 🚀", message: "შენ წარმატებით დალოგინდი, ახლა უკვე შეგიძლია ქვეყნების შესახებ ინფორმაციები შეიმეცნო", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "ქო ბატონი", style: .default))
+        present(alertController, animated: true)
     }
     
 }
